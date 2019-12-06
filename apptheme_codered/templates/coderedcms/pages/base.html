@@ -1,0 +1,21 @@
+{% extends "coderedcms/pages/base.html" %}
+{% load static wagtailsettings_tags %}
+{% get_settings %}
+
+{% block custom_assets %}
+{# Add your custom CSS here #}
+<link rel="stylesheet" type="text/css" href="{% static 'website/css/def.css' %}">
+{% endblock %}
+
+{% block custom_scripts %}
+{# Add your custom JavaScript here, or delete the line below if you don't need any #}
+<script type="text/javascript" src="{% static 'website/js/custom.js' %}"></script>
+{% endblock %}
+
+{% block frontend_assets %}
+    {% if settings.coderedcms.LayoutSettings.frontend_theme %}
+    <link rel="stylesheet" href="https://artefacts.ceda.ac.uk/themes/orgtheme_{{settings.coderedcms.LayoutSettings.frontend_theme}}/4/flatly/bootstrap.css" />
+    {% else %}
+    <link rel="stylesheet" href="{% static 'coderedcms/vendor/bootstrap/dist/css/bootstrap.min.css' %}" />
+    {% endif %}
+{% endblock %}
