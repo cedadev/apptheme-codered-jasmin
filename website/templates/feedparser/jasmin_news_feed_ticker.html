@@ -1,0 +1,11 @@
+{% load i18n tz apptheme_codered_tags %}
+<ul id="ticker">
+{% for entry in feed_content.entries %}
+    {% if entry.published|datemod|dateage < 60 %}
+    <li>
+        <a href="{{ entry.link }}" target="_blank">{{ entry.title }}</a>&nbsp;
+        <small>({{ entry.published|datemod|timesince }} ago)</small> 
+    </li>
+    {% endif %}
+{% endfor %}
+</ul>

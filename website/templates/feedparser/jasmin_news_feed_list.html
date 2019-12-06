@@ -1,0 +1,75 @@
+{% load apptheme_codered_tags i18n %}
+
+{% for entry in feed_content.entries %}
+    {% if  entry.published|datemod|dateage < 60 %}
+    <div class="card mb-3">
+
+            <div class="card-header">
+                {% block blog_post_list_post_title %}
+                <div class="row">
+                    <div class="col-8 text-left">
+                        <h5 class="card-title">{{ entry.title | safe}}</h5>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h6 class="card-subtitle mb-2 text-muted">
+                                {% blocktrans with sometime=entry.published|datemod|timesince %}{{ sometime }} ago{% endblocktrans %}
+                        </h6>
+                    </div>
+                </div>
+                <h5 class="card-title">
+                    
+                </h5>
+                {% endblock %}
+            </div>
+
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8 text-left">
+                        {% block blog_post_list_post_metainfo %}
+                        {% endblock %}
+
+                        {% block blog_post_list_post_content %}
+                        {{ entry.summary | de_b | safe | truncatewords_html:30 }}
+                        {% endblock %}
+
+                        {% block blog_post_list_post_links %}
+
+                            <a href="{{ blog_post.get_absolute_url }}" class="btn btn-primary btn-large">{% trans "read more" %}</a>
+
+                            {% comment %}
+                            {% keywords_for blog_post as tags %}
+                            {% if tags %}
+                            &nbsp;{% trans "Tags" %}:
+                            {% spaceless %}
+                            {% for tag in tags %}
+                            <a href="{% url "blog_post_list_tag" tag.slug %}"><span class="badge badge-secondary">{{ tag }}</span></a>{% if not forloop.last %}&nbsp;{% endif %}
+                            {% endfor %}
+                            {% endspaceless %}
+                            {% endif %}
+                            {% endcomment %}
+                            
+
+                            
+
+                        {% endblock %}
+                    </div>
+
+                    <div class="col-4 text-right">
+                        {% if entry.links %}
+                            {% for link in entry.links %}
+                                {% if link.href and link.rel == "enclosure" %}
+                                    {% block blog_post_list_post_featured_image %}
+                                    <a href="{{ link.href }}">
+                                        <img class="img-thumbnail pull-left" src="{{ link.href }}">
+                                    </a>
+                                    {% endblock %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+    </div>
+    {% endif %}
+{% endfor %}

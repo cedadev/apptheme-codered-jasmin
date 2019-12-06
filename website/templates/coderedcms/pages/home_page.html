@@ -1,0 +1,20 @@
+{% extends "coderedcms/pages/web_page_notitle.html" %}
+{% load static feedparser_tags %}
+
+{% block navbar %}
+
+    {% include 'coderedcms/snippets/navbar.html' %}
+
+    {% block news_ticker %}
+    <div class="alert alert-info alert-dismissable fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+        </button>
+        JASMIN News (from <a href="http://www.ceda.ac.uk/blog/category/jasmin/" target="_blank">CEDA news feed</a>)
+        <div id="wrapper">
+            {% feedparser_render 'http://www.ceda.ac.uk/blog/tag/jasmin/feeds/rss' template='feedparser/jasmin_news_feed_ticker.html' %}
+        </div>
+    </div>
+    {% endblock %}
+
+{% endblock %}

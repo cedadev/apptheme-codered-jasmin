@@ -80,3 +80,12 @@ class WebPage(CoderedWebPage):
         verbose_name = 'Web Page'
 
     template = 'coderedcms/pages/web_page.html'
+
+# CEDA/JASMIN custom classes below
+
+class NewsClientPage(CoderedWebPage):
+    """
+    Page which acts as client to external news feed
+    """
+    class Meta:
+        verbose_name = 'News client page'
