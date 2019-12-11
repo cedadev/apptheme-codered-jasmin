@@ -11,6 +11,8 @@ from coderedcms.models import (
     CoderedWebPage
 )
 
+from django.db import models
+
 
 class ArticlePage(CoderedArticlePage):
     """
@@ -21,7 +23,7 @@ class ArticlePage(CoderedArticlePage):
         ordering = ['-first_published_at', ]
 
     # Only allow this page to be created beneath an ArticleIndexPage.
-    parent_page_types = ['website.ArticleIndexPage']
+    parent_page_types = ['apptheme_codered.ArticleIndexPage']
 
     template = 'coderedcms/pages/article_page.html'
     amp_template = 'coderedcms/pages/article_page.amp.html'
@@ -36,10 +38,10 @@ class ArticleIndexPage(CoderedArticleIndexPage):
         verbose_name = 'Article Landing Page'
 
     # Override to specify custom index ordering choice/default.
-    index_query_pagemodel = 'website.ArticlePage'
+    index_query_pagemodel = 'apptheme_codered.ArticlePage'
 
     # Only allow ArticlePages beneath this page.
-    subpage_types = ['website.ArticlePage']
+    subpage_types = ['apptheme_codered.ArticlePage']
 
     template = 'coderedcms/pages/article_index_page.html'
 
@@ -85,7 +87,16 @@ class WebPage(CoderedWebPage):
 
 class NewsClientPage(CoderedWebPage):
     """
-    Page which acts as client to external news feed
+    Page which acts as client to external feeds
     """
     class Meta:
         verbose_name = 'News client page'
+
+class EventsClientPage(CoderedWebPage):
+    """
+    Page which acts as client to external feeds
+    """
+    class Meta:
+        verbose_name = 'Events client page'
+
+
