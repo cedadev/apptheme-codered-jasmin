@@ -31,4 +31,3 @@ def dateage(value):
 def order_by(queryset, args):
     args = [x.strip() for x in args.split(',')]
     return queryset.order_by(*args)
-

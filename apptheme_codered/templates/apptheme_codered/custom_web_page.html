@@ -1,0 +1,40 @@
+{% extends "coderedcms/pages/base.html" %}
+{% load apptheme_codered_tags %}
+
+{% block navbar %}
+    {% include 'coderedcms/snippets/navbar.html' %}
+{% endblock %}
+
+{% block index_filters %}
+    {% if page.index_show_subpages and page.index_classifiers.exists %}
+    <div class="container">
+        {% include "coderedcms/includes/classifier_dropdowns.html" with formclass="form-inline" %}
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% block messages %}
+    {% block alert %}
+    {% if page.alert_is_current %}
+    <div class="alert {{page.alert_level}} alert-dismissible fade show" role="alert">
+        {{ page.alert_message | safe }}
+        <p class="small">{{ page.alert_display_from | timesince }} ago</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
+    {% endblock %}
+{% endblock %}
+
+{% block index_content %}
+    {% if page.index_show_subpages %}
+    <div class="container">
+        {{block.super}}
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% block footer %}
+{% include 'coderedcms/snippets/footer.html' %}
+{% endblock %}
