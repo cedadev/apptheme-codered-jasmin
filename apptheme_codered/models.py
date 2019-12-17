@@ -125,10 +125,14 @@ class CustomWebPage(CoderedWebPage):
     )
     alert_level_choices = (
         ('alert-info', _('Default level')),
-        ('alert-info', _('info')),
-        ('alert-warning', _('warning')),
-        ('alert-error', _('error')),
+        ('alert-primary', _('primary')),
+        ('alert-secondary', _('secondary')),
+        ('alert-success', _('success')),
         ('alert-danger', _('danger')),
+        ('alert-warning', _('warning')),
+        ('alert-info', _('info')),
+        ('alert-light', _('light')),
+        ('alert-dark', _('dark')),
     )
     alert_level = models.CharField(
         default='',
