@@ -10,8 +10,28 @@
 {% block custom_scripts %}
 {# Add your custom JavaScript here, or delete the line below if you don't need any #}
 <script type="text/javascript" src="{% static 'apptheme_codered/js/custom.js' %}"></script>
+<script src="/static/cookielaw/js/cookielaw.js"></script>
 {% endblock %}
 
 {% block frontend_assets %}
     <link rel="stylesheet" href="http://artefacts.ceda.ac.uk/themes/orgtheme_jasmin/0.2.1/4/flatly/bootstrap.css" />
+{% endblock %}
+
+{% block messages %}
+    {{ block.super }}
+    {% block cookielaw_banner %}
+    {% if 'cookielaw_accepted' not in request.COOKIES %}
+        <div class="alert alert-info text-center" id="CookielawBanner">
+        This website uses cookies.
+        By continuing to use this website you are agreeing to our use of cookies.&nbsp;
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary"
+                        onclick="javascript:Cookielaw.createCookielawCookie();">OK</a>
+
+                <button type="button" class="btn btn-secondary"
+                        onclick="javascript:window.open('http://www.ceda.ac.uk/privacy-and-cookies/')">Find out more</button>
+            </div>
+        </div>
+    {% endif %}
+    {% endblock %}
 {% endblock %}

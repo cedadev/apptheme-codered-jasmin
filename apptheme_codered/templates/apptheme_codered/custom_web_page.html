@@ -14,6 +14,7 @@
 {% endblock %}
 
 {% block messages %}
+    {{ block.super }}
     {% block alert %}
     {% if page.alert_is_current and page.alert_message %}
     <div class="alert {{page.alert_level}} alert-dismissible fade show" role="alert">
