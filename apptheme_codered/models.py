@@ -147,18 +147,27 @@ class CustomWebPage(CoderedWebPage):
         blank=True,
         default=date.today,
         verbose_name=_('Date alert is visible from'),
+        help_text=_('Need both from and to dates for alert to display')
     )
     alert_display_to = models.DateField(
         null=True,
         blank=True,
         default=date.today,
         verbose_name=_('Display alert is visible to'),
+        help_text=_('Need both from and to dates for alert to display')
     )
 
     @property
     def alert_is_current(self):
+        """
+        Check whether the alert is current based on display from/to dates
+        """
         today = date.today()
-        if ( self.alert_display_from <= today <= self.alert_display_to ): 
+        if (
+            self.alert_display_from and
+            self.alert_display_to and
+            (self.alert_display_from <= today <= self.alert_display_to)
+        ): 
             return True
         else:
             return False

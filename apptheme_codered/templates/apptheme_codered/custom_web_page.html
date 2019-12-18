@@ -15,7 +15,7 @@
 
 {% block messages %}
     {% block alert %}
-    {% if page.alert_is_current %}
+    {% if page.alert_is_current and page.alert_message %}
     <div class="alert {{page.alert_level}} alert-dismissible fade show" role="alert">
         {{ page.alert_message | safe }}
         <p class="small">{{ page.alert_display_from | timesince }} ago</p>
