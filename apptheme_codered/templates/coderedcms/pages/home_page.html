@@ -1,6 +1,17 @@
 {% extends "coderedcms/pages/web_page_notitle.html" %}
 {% load static feedparser_tags %}
 
+{% block custom_scripts %}
+    {{ block.super }}
+    <!-- News ticker -->
+    <script type="text/javascript" src="{% static 'tickermepink/assets/js/tickerme.js' %}"></script>
+    <script type="text/javascript" >
+        $(function(){
+            $('#ticker').tickerme();
+        });
+    </script>
+{% endblock %}
+
 {% block navbar %}
 
     {% include 'coderedcms/snippets/navbar.html' %}
