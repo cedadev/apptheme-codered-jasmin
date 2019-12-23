@@ -1,0 +1,11 @@
+/* Custom style settings for apptheme_codered */
+
+/* Tickerme news ticker rendering */ 
+#ticker_container {
+    overflow: auto;
+}
+
+/* Remove rounded corners from alert components (looks neater) */
+.alert {
+    border-radius: 0px;
+}
