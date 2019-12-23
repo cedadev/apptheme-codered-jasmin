@@ -2,10 +2,20 @@
 <ul id="ticker">
 {% for entry in feed_content.entries %}
     {% if entry.published|datemod|dateage < 60 %}
+    {% spaceless %}
     <li>
-        <a href="{{ entry.link }}" target="_blank">{{ entry.title }}</a>&nbsp;
+        <a href="{{ entry.link }}" target="_blank">
+            {% for enc in entry.enclosures %}
+                <img class="align-top" src="{{enc.href}}" height="22">
+            {% endfor %}
+        </a>&nbsp;
+        <a href="{{ entry.link }}" target="_blank">
+            {{ entry.title }}
+        </a>&nbsp;
+        
         <small>({{ entry.published|datemod|timesince }} ago)</small> 
     </li>
+    {% endspaceless %}
     {% endif %}
 {% endfor %}
 </ul>
