@@ -19,7 +19,9 @@
 {% endblock %}
 
 {% block frontend_assets %}
-    <link rel="stylesheet" href="http://artefacts.ceda.ac.uk/themes/orgtheme_jasmin/0.3/4/flatly/bootstrap.css" />
+    <!-- <link rel="stylesheet" href="http://artefacts.ceda.ac.uk/themes/orgtheme_jasmin/0.3/4/flatly/bootstrap.css" /> -->
+    <!-- <link rel="stylesheet" href="/static/orgtheme/4/flatly/bootstrap.css?v=1" /> -->
+    <link rel="stylesheet" href="http://artefacts.ceda.ac.uk/themes/orgtheme_{{settings.coderedcms.LayoutSettings.frontend_theme}}/4/flatly/bootstrap.css?v=x" />
 {% endblock %}
 
 {% block messages %}
