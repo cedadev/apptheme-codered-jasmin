@@ -8,22 +8,9 @@ from coderedcms.models import (
     CoderedArticleIndexPage,
     CoderedEmail,
     CoderedFormPage,
-    CoderedWebPage,
-    CoderedPage,
+    CoderedWebPage
 )
-from coderedcms.blocks import CONTENT_STREAMBLOCKS, HTML_STREAMBLOCKS
 
-from django.db import models
-from datetime import datetime, timedelta, date
-from wagtail.snippets.models import register_snippet
-from django.utils.translation import ugettext_lazy as _
-from wagtail.core.fields import StreamField
-from coderedcms.blocks import LAYOUT_STREAMBLOCKS
-from wagtail.admin.edit_handlers import (
-    FieldPanel,
-    MultiFieldPanel,
-    StreamFieldPanel)
-from wagtail.core.models import Page
 
 class ArticlePage(CoderedArticlePage):
     """
@@ -109,76 +96,3 @@ class EventsClientPage(CoderedWebPage):
     """
     class Meta:
         verbose_name = 'Events client page'
-
-class CustomWebPage(CoderedWebPage):
-    """
-    Custom web page with alert for use as home page
-    """
-    class Meta:
-        verbose_name = 'Custom web page'
-
-    alert_message = StreamField(
-        HTML_STREAMBLOCKS,
-        null=True,
-        blank=True,
-        verbose_name=_('Alert message')
-    )
-    alert_level_choices = (
-        ('alert-info', _('Default level')),
-        ('alert-primary', _('primary')),
-        ('alert-secondary', _('secondary')),
-        ('alert-success', _('success')),
-        ('alert-danger', _('danger')),
-        ('alert-warning', _('warning')),
-        ('alert-info', _('info')),
-        ('alert-light', _('light')),
-        ('alert-dark', _('dark')),
-    )
-    alert_level = models.CharField(
-        default='',
-        blank=True,
-        max_length=255,
-        verbose_name=_('Alert level'),
-        choices=alert_level_choices,
-        help_text=_('Level of alert (corresponds to Bootstrap css styles)')
-    )
-    alert_display_from = models.DateField(
-        null=True,
-        blank=True,
-        default=date.today,
-        verbose_name=_('Date alert is visible from'),
-        help_text=_('Need both from and to dates for alert to display')
-    )
-    alert_display_to = models.DateField(
-        null=True,
-        blank=True,
-        default=date.today,
-        verbose_name=_('Display alert is visible to'),
-        help_text=_('Need both from and to dates for alert to display')
-    )
-
-    @property
-    def alert_is_current(self):
-        """
-        Check whether the alert is current based on display from/to dates
-        """
-        today = date.today()
-        if (
-            self.alert_display_from and
-            self.alert_display_to and
-            (self.alert_display_from <= today <= self.alert_display_to)
-        ): 
-            return True
-        else:
-            return False
-
-    content_panels = CoderedWebPage.content_panels + [
-        StreamFieldPanel('alert_message'),
-        MultiFieldPanel(
-            [
-                FieldPanel('alert_display_from'),
-                FieldPanel('alert_display_to'),
-                FieldPanel('alert_level'),
-            ],
-        )
-    ]

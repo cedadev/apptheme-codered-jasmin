@@ -8,4 +8,9 @@
 /* Remove rounded corners from alert components (looks neater) */
 .alert {
     border-radius: 0px;
+    margin-bottom: 0;
+}
+
+footer {
+    margin-top: 1rem;
 }
