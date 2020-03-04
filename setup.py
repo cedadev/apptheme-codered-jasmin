@@ -24,7 +24,7 @@ with open(os.path.join(here, 'README.md')) as f:
 if __name__ == "__main__":
 
     setup(
-        name = 'apptheme-codered',
+        name = 'apptheme-codered-jasmin',
         version = version,
         description = 'App theme providing templates for CodeRed CMS websites',
         long_description = README,
@@ -36,7 +36,7 @@ if __name__ == "__main__":
         ],
         author = 'Matt Pritchard',
         author_email = 'matt.prithard@stfc.ac.uk',
-        url = 'https://github.com/cedadev/apptheme-codered',
+        url = 'https://github.com/cedadev/apptheme-codered-jasmin',
         keywords = 'web django theme bootstrap',
         packages = find_packages(),
         include_package_data = True,
