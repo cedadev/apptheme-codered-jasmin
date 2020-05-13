@@ -43,7 +43,8 @@ if __name__ == "__main__":
         zip_safe = False,
         install_requires = [
             'coderedcms',
-            'django-feedparser'
+            'django-feedparser',
+            'django-cookie-law',
         ],
         #extras_require = { },
     )
