@@ -26,6 +26,7 @@ class ArticlePage(CoderedArticlePage):
     template = 'coderedcms/pages/article_page.html'
     amp_template = 'coderedcms/pages/article_page.amp.html'
     search_template = 'coderedcms/pages/article_page.search.html'
+    search_db_include = True
 
 
 class ArticleIndexPage(CoderedArticleIndexPage):
@@ -42,6 +43,7 @@ class ArticleIndexPage(CoderedArticleIndexPage):
     subpage_types = ['apptheme_codered.ArticlePage']
 
     template = 'coderedcms/pages/article_index_page.html'
+    search_db_include = True
 
 
 class FormPage(CoderedFormPage):
@@ -80,6 +82,7 @@ class WebPage(CoderedWebPage):
         verbose_name = 'Web Page'
 
     template = 'coderedcms/pages/web_page.html'
+    search_db_include = True
 
 # CEDA/JASMIN custom classes below
 
