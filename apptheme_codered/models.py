@@ -10,6 +10,8 @@ from coderedcms.models import (
     CoderedFormPage,
     CoderedWebPage
 )
+from wagtail.core.fields import StreamField
+from coderedcms.blocks import LAYOUT_STREAMBLOCKS
 
 
 class ArticlePage(CoderedArticlePage):
@@ -20,6 +22,9 @@ class ArticlePage(CoderedArticlePage):
         verbose_name = 'Article'
         ordering = ['-first_published_at', ]
 
+    # Customise the set of blocks available within body's StreamField
+    body = StreamField(LAYOUT_STREAMBLOCKS, null=True, blank=True)
+    
     # Only allow this page to be created beneath an ArticleIndexPage.
     parent_page_types = ['apptheme_codered.ArticleIndexPage']
 
