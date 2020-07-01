@@ -1,5 +1,22 @@
 /* Custom style settings for apptheme_codered */
 
+/* make article layout more compact with cover image */
+@media (min-width: 768px) {
+        .codered-article.has-img .container {
+        position: relative;
+        box-shadow: none;
+        padding: 5vw;
+    }
+}
+.codered-article.has-img div.hero-fg {
+    padding: 0px 0;
+}
+/* Add a text shadow to a h1 in a hero unit */
+div.hero-bg h1 {
+    text-shadow: -2px 3px 4px black;
+}
+
+
 /* Tickerme news ticker rendering */ 
 #ticker_container {
     overflow: auto;
