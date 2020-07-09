@@ -31,3 +31,9 @@ div.hero-bg h1 {
 footer {
     margin-top: 1rem;
 }
+
+blockquote {
+    margin: 1em;
+    font-weight: 900;
+    font-style: italic;
+}
