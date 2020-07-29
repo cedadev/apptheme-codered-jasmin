@@ -1,7 +1,7 @@
 {% load apptheme_codered_tags i18n %}
 
 {% for entry in feed_content.entries %}
-    {% if  entry.published|datemod|dateage < 20000 %}
+    {% if  entry.published|datemod|dateage < 60 %}
     <div class="card mb-3">
 
             <div class="card-header">
