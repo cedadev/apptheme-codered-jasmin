@@ -1,0 +1,45 @@
+{% load wagtailimages_tags %}
+
+{% image self.image max-1000x1000 as self_image %}
+
+{% if format == 'amp' %}
+
+<amp-img src="{{self_image.url}}"
+layout="responsive" width="{{self_image.width}}" height="{{self_image.height}}"
+class="{{self.settings.custom_css_class}}"
+{% if self.settings.custom_id %}id="{{self.settings.custom_id}}"{% endif %}
+alt="{{self_image.image.title}}"></amp-img>
+
+{% else %}
+
+{# slugify the image title to use as the data target #}
+{% with self_image.image.title|slugify as slug %}
+
+    <a href="#" data-toggle="modal" data-target="#{{slug}}Modal" title="{{self_image.image.title}} (click to enlarge)">
+        <img src="{{self_image.url}}"
+        class="w-100 {{self.settings.custom_css_class}}"
+        {% if self.settings.custom_id %}id="{{self.settings.custom_id}}"{% endif %}
+        alt="{{self_image.image.title}}" />
+    </a>
+
+    <!-- Modal -->
+    <div class="modal fade" id="{{slug}}Modal" tabindex="-1" aria-labelledby="MyLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+        <div class="modal-header">
+        <figcaption class="figure-caption">{{self_image.image.title}}</figcaption>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body">
+            <img src="{{self_image.url}}"
+    class="w-400"
+    alt="{{self_image.image.title}}" />
+        </div>
+        </div>
+    </div>
+    </div>
+{% endwith %}
+
+{% endif %}
