@@ -57,10 +57,11 @@
     {% endif %}
         <div class="container">
 
+            {# make rendering of article-header conditional on existence of content in one or more #}
+            {# of the header fields #}
+            {% if self.author or self.author_display or self.get_pub_date %}
             <div class="article-header">
-                {% if self.caption %}
-                <p class="lead">{{self.caption}}</p>
-                {% endif %}
+                {# choose not to display self.caption here #}
                 <p>
                     {% if self.author_display %}
                     <span class="article-author">{{self.get_author_name}}</span>
@@ -79,6 +80,7 @@
                 </p>
                 <hr>
             </div>
+            {% endif %}
             <div class="article-body">
                 {% include_block self.body with settings=settings %}
             </div>
