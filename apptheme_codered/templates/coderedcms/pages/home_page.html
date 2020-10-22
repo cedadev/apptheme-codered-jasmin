@@ -7,7 +7,13 @@
     <script type="text/javascript" src="{% static 'tickermepink/assets/js/tickerme.js' %}"></script>
     <script type="text/javascript" >
         $(function(){
-            $('#ticker').tickerme();
+            $('#ticker').tickerme({
+                fade_speed: 900, //The speed each story will fade in and out (milliseconds).
+                duration: 3000, //The length of time a story is on the screen (milliseconds).
+                auto_stop: false, //If true, the ticker will automatically stop when the previous or next button is clicked.
+                control_colour: '#6683B7', //The colour of the play, pause, previous and next controls.
+                control_rollover: '#FFFFFF' //The colour of the control buttons on rollover.
+            });
         });
     </script>
 {% endblock %}
