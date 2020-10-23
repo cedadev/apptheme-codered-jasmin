@@ -27,7 +27,7 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
         </button>
-        <span class="small">JASMIN News (from <a href="https://www.ceda.ac.uk/blog/tag/jasmin/" target="_blank">CEDA news feed</a>)</span>
+        <span class="small" style="color: #6683B7;">JASMIN latest from <a href="https://www.ceda.ac.uk/blog/tag/jasmin/" target="_blank" style="color: inherit;">CEDA news </a>&nbsp;<a href="https://twitter.com/cedanews" style="color: inherit;"><i class="fab fa-twitter"></i></a></span>
         <div id="wrapper">
             {% feedparser_render 'https://www.ceda.ac.uk/blog/tag/jasmin/feeds/rss' template='feedparser/jasmin_news_feed_ticker.html' %}
         </div>
