@@ -8,6 +8,12 @@
         padding: 5vw;
     }
 }
+
+.codered-article .article-body {
+    margin-top: 0em;
+    padding-bottom: 1em;
+}
+
 .codered-article.has-img div.hero-fg {
     padding: 0px 0;
 }
@@ -16,6 +22,10 @@ div.hero-bg h1 {
     text-shadow: -2px 3px 4px black;
 }
 
+/* and to carousel captions */
+.carousel-caption {
+    text-shadow: -1px 1px 3px black;
+}
 
 /* Tickerme news ticker rendering */ 
 #ticker_container {
@@ -36,4 +46,59 @@ blockquote {
     margin: 1em;
     font-weight: 900;
     font-style: italic;
+}
+
+/* add extra margin to top of tables */
+.table {
+    margin-top: 1rem;
+}
+
+/* position the caption above a table */
+caption {
+    caption-side: top;
+}
+
+/* JASMIN Service colours */
+:root {
+    --service-access:        #FBBB10;
+    --service-information:   #BE2BBB;
+    --service-compute:       #FF6900;
+    --service-storage:       #1E5DF8;
+    --service-cloud:         #34D5AE;
+    --service-network:       #9A1A9B;
+}
+
+/* Set table header colours for these service groups */
+.table-service-access > th,
+.table-service-access > thead {
+    background-color: var(--service-access);
+}
+
+.table-service-information > th,
+.table-service-information > thead {
+    background-color: var(--service-information);
+    color: var(--white);
+}
+
+.table-service-compute > th,
+.table-service-compute > thead {
+    background-color: var(--service-compute);
+    color: var(--white);
+}
+
+.table-service-storage > th,
+.table-service-storage > thead {
+    background-color: var(--service-storage);
+    color: var(--white);
+}
+
+.table-service-cloud > th,
+.table-service-cloud > thead {
+    background-color: var(--service-cloud);
+}
+
+.table-service-network > th,
+.table-service-network > thead {
+    background-color: var(--service-network);
+    color: var(--white);
 }
