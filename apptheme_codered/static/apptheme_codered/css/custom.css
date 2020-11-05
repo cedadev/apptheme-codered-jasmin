@@ -17,7 +17,7 @@
 .codered-article.has-img div.hero-fg {
     padding: 0px 0;
 }
-/* Add a text shadow to a h1 in a hero unit */
+/* Add a text shadow to a h1 in a hero unit (used when caption for bg image used for hero text) */
 div.hero-bg h1 {
     text-shadow: -2px 3px 4px black;
 }
@@ -101,4 +101,21 @@ caption {
 .table-service-network > thead {
     background-color: var(--service-network);
     color: var(--white);
+}
+
+/* Used in combination with card_transp.html custom card template */
+.bg-transp-grey-50 {
+    background-color: rgba(127,128,128,0.5);
+}
+
+/* Tweaks for hero unit appearance */
+.hero-fg {
+    background-color: rgba(127,128,128,0.2);
+}
+.hero-bg {
+    margin-bottom: 3rem;
+}
+/* Apply shadow to all text within a hero-fg */
+div.hero-fg {
+    text-shadow: -1px 1px 4px black;
 }
