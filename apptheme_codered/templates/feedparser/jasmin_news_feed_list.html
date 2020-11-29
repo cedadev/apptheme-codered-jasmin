@@ -36,7 +36,7 @@
                             {% if entry.links %}
                                 {% for link in entry.links %}
                                     {% if link.type == "text/html"%}
-                                    <a href="{{ entry.link }}" parent="_blank" class="btn btn-primary btn-sm">{% trans "read more" %}</a>{% if not forloop.last %}&nbsp;{% endif %}
+                                    <a href="{{ entry.link }}" parent="_blank" class="btn btn-success btn-sm">{% trans "read more" %}</a>{% if not forloop.last %}&nbsp;{% endif %}
                                     {% endif %}
                                 {% endfor %}
                             {% endif %}
