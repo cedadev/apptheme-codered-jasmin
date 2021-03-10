@@ -119,3 +119,9 @@ caption {
 div.hero-fg {
     text-shadow: -1px 1px 4px black;
 }
+
+/* Apply font style to Google CSE results (assumes JASMIN theme) */
+
+div.gsc-control-cse {
+    font-family: "BoosterNextFY-Regular", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}

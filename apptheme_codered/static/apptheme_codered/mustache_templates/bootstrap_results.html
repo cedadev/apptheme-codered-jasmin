@@ -1,0 +1,15 @@
+<div>
+    {{#results}}
+    <div class="card mb-3">
+        <div class="card-body">
+                    {{#thumbnailImage }}<img src="{{url}}" class="float-right" width="100px" height="auto" alt="thumbnail image for search result">{{/thumbnailImage }}
+                    <h5 class="card-title"><a href="{{url}}" class="stretched-link" target="_blank">{{{title}}}</a></h5>
+                    <p class="card-text">{{{content}}}</p>
+                    {{#perResultLabels}}
+                    <span class="badge badge-primary">{{anchor}}</span>
+                    {{/perResultLabels}}
+                    
+        </div>
+    </div>
+    {{/results}}
+</div>
