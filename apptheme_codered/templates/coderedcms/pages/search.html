@@ -1,0 +1,82 @@
+{% extends "coderedcms/pages/web_page.html" %}
+{% load bootstrap4 i18n coderedcms_tags static %}
+
+{% block extra_head %}
+    <script async src="https://cse.google.com/cse.js?cx=98d9bba52d1334b96"></script>
+    <script src="https://unpkg.com/mustache@4.1.0"></script>
+    <script src="{% static 'website/js/result_bootstrap_mustache.js' %}"></script>
+    <script>
+        gcs_results_template = "{% static 'website/mustache_templates/bootstrap_results.html' %}"
+        window.__gcse || (window.__gcse = {});
+        window.__gcse.searchCallbacks = {
+            web: {
+                ready: bootstrapResultsReadyCallback,
+            },
+        };
+    </script>
+{% endblock %}
+
+{% block title %}
+    {% if not form.s.value %}
+        {% trans 'Search' %}
+    {% else %}
+        {% trans 'Search for' %} “{{form.s.value}}”
+    {%endif%}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+
+        <div class="mt-5">
+          {% if not form.s.value %}
+              <h2>{% trans 'Search' %}</h2>
+          {% else %}
+              <h2>{% trans 'Search for' %} “{{form.s.value}}”</h2>
+          {%endif%}
+        </div>
+
+        {% if not settings.coderedcms.LayoutSettings.navbar_search %}
+        <form class="mt-5" action="{% url 'codered_search' %}" method="GET">
+            <div class="row">
+                <div class="col-sm-9">
+                    {% bootstrap_form form size='large' layout='inline' %}
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-block btn-outline-primary" type="submit">{% trans 'Search' %}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        {% endif %}
+
+        {% if pagetypes %}
+        {% query_update request.GET 'p' None as qs_nop %}
+        <div class="mt-5">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    {% query_update qs_nop 't' None as qs_t %}
+                    <a class="nav-link {% if not form.t.value %}active{% endif %}" href="?{{qs_t.urlencode}}">{% trans 'All Results' %}</a>
+                </li>
+                {% for pt in pagetypes %}
+                <li class="nav-item">
+                    {% query_update qs_nop 't' pt.content_type.model as qs_t %}
+                    <a class="nav-link {% if form.t.value == pt.content_type.model %}active{% endif %}" href="?{{qs_t.urlencode}}">{{pt.search_name_plural}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <hr class="mb-5">
+
+        <!-- JASMIN cx (needs query parameter set as "s" rather than default "q" to work with codered search box -->
+        <div class="gcse-searchresults-only"
+        data-enableImageSearch="false"
+        data-filter="0"
+        data-refinementStyle="list"
+        data-queryParameterName="s"
+        ></div>
+
+    </div>
+{% endblock %}
